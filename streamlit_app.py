@@ -19,5 +19,5 @@ if st.button("Generate Response"):
     with st.spinner("Generating..."):
       result = generator(prompt, max_length=150, do_sample=True)
       st.success(result[0]['generated_text'])
-    else:
-        st.warning("Please enter a prompt.")
+  else:
+      st.warning("Please enter a prompt.")
