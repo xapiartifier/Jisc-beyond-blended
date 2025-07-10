@@ -8,7 +8,7 @@ st.title("🎓 Jisc Beyond Blended Agent")
 # Load a non-API Hugging Face model with caching
 @st.cache_resource
 def load_model():
-    return pipeline("text-generation", model="distilgpt2")
+  return pipeline("text-generation", model="distilgpt2")
 
 generator = load_model()
 
