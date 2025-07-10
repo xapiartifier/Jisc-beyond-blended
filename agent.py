@@ -1,10 +1,8 @@
-from langchain.chains import RetrievalQA
-from langchain_community.chat_models import ChatOpenAI
+from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
-from langchain.embeddings import OpenAIEmbeddings
 
 def load_agent():
-    db = FAISS.load_local("vectorstore", OpenAIEmbeddings())
-    retriever = db.as_retriever()
-    llm = ChatOpenAI(temperature=0)
-    return RetrievalQA.from_chain_type(llm=llm, retriever=retriever)
+    # Load the FAISS vector store using HuggingFace embeddings
+    embeddings = HuggingFaceEmbeddings(model_name="sentence-transformers/all-MiniLM-L6-v2")
+    db = FAISS.load_local("vectorstore", embeddings)
+    return db
