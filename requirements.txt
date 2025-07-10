@@ -5,3 +5,8 @@ sentence-transformers
 transformers
 torch
 huggingface_hub
+faiss-cpu
+pypdf
+unstructured
+python-pptx
+sentence-transformers
