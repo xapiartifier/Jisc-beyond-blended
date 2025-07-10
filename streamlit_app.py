@@ -1,23 +1,23 @@
 import streamlit as st
-import importlib.util
-import os
+from transformers import pipeline
 
-# Dynamically load agent.py
-agent_path = os.path.join(os.path.dirname(__file__), "agent.py")
-spec = importlib.util.spec_from_file_location("agent", agent_path)
-agent_module = importlib.util.module_from_spec(spec)
-spec.loader.exec_module(agent_module)
+st.set_page_config(page_title="Beyond Blended Agent", layout="wide")
 
-# Load the agent
-agent = agent_module.load_agent()
+st.title("🎓 Jisc Beyond Blended Agent")
 
-# Streamlit UI
-st.title("Jisc Beyond Blended Agent")
+# Load a non-API Hugging Face model (e.g., sentiment-analysis)
+@st.cache_resource
+def load_model():
+    return pipeline("text-generation", model="gpt2")
 
-user_input = st.text_input("Enter your query:")
+generator = load_model()
 
-if user_input:
-    with st.spinner("Thinking..."):
-      response = agent.run(user_input)
-      st.write("### Response:")
-      st.write(response)
+prompt = st.text_area("Enter your query or prompt:", height=200)
+
+if st.button("Generate Response"):
+    if prompt:
+        with st.spinner("Generating..."):
+            result = generator(prompt, max_length=150, do_sample=True)
+            st.success(result[0]['generated_text'])
+    else:
+        st.warning("Please enter a prompt.")
