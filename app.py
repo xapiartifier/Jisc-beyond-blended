@@ -21,3 +21,19 @@ if st.button("Generate Response"):
             st.success(result[0]['generated_text'])
     else:
         st.warning("Please enter a prompt.")
+from langchain.document_loaders import PyPDFLoader, UnstructuredPowerPointLoader
+import glob
+
+# Load PDF and PPTX files
+pdf_files = glob.glob("docs/**/*.pdf", recursive=True)
+pptx_files = glob.glob("docs/**/*.pptx", recursive=True)
+
+documents = []
+for pdf_path in pdf_files:
+    loader = PyPDFLoader(pdf_path)
+    documents.extend(loader.load())
+
+for pptx_path in pptx_files:
+    loader = UnstructuredPowerPointLoader(pptx_path)
+    documents.extend(loader.load())
+
