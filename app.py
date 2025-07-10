@@ -5,10 +5,10 @@ st.set_page_config(page_title="Beyond Blended Agent", layout="wide")
 
 st.title("🎓 Jisc Beyond Blended Agent")
 
-# Load a non-API Hugging Face model (e.g., sentiment-analysis)
+# Load a non-API Hugging Face model with caching
 @st.cache_resource
 def load_model():
-    return pipeline("text-generation", model="gpt2")
+    return pipeline("text-generation", model="distilgpt2")
 
 generator = load_model()
 
