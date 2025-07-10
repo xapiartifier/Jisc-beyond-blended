@@ -3,7 +3,6 @@ import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from langchain_community.embeddings import HuggingFaceEmbeddings
 from langchain.vectorstores import FAISS
-from agent import load_agent
 
 def load_agent():
     # Use CPU-only configuration to avoid GPU-related errors
