@@ -15,7 +15,7 @@ generator = load_model()
 prompt = st.text_area("Enter your query or prompt:", height=200)
 
 if st.button("Generate Response"):
-    if prompt:
+  if prompt:
         with st.spinner("Generating..."):
             result = generator(prompt, max_length=150, do_sample=True)
             st.success(result[0]['generated_text'])
