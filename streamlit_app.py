@@ -8,8 +8,8 @@ st.title("🎓 Jisc Beyond Blended Agent")
 # Load a non-API Hugging Face model (e.g., sentiment-analysis)
 @st.cache_resource
 def load_model():
-    return pipeline("text-generation", model="gpt2")
-
+  return pipeline("text-generation", model="gpt2")
+  
 generator = load_model()
 
 prompt = st.text_area("Enter your query or prompt:", height=200)
